@@ -24,28 +24,29 @@ class DBStorage:
         """To get all instances to a database"""
         from models.base_model import BaseModel, Base
         from models.user import User
-        from model.badge import Badge
-        from model.skill import Skill
-        from model.progress import Progress
-        from model.resource import Resource
-        from sqlalchemy,om import scoped_session, sessionmaker
+        from models.badge import Badge
+        from models.skill import Skill
+        from models.progress import Progress
+        from models.resource import Resource
+        from sqlalchemy.orm import scoped_session, sessionmaker
 
         # create and map all tables
         Base.metadata.create_all(DBStorage.__engine)
         # create a session to query the table
         Session = scoped_session(sessionmaker(
-                biind=DBStorage.__engine,
+                bind=DBStorage.__engine,
                 expire_on_commit=False)
             )
         DBStorage.__session = Session()
 
     def new(self, obj):
         """To add the instance of a class to the database"""
-        DbStorage.__session.add(obj)
+        DBStorage.__session.add(obj)
+        self.save()
 
     def save(self):
         """To save all changes to the database"""
-        DBStorage__session.commit()
+        DBStorage.__session.commit()
 
     def delete(self, obj):
         """To delete an obj in the database"""
@@ -62,8 +63,8 @@ class DBStorage:
                 queries[key] = obj
 
         # else: query all classes
-        else
+        # else
 
-    def get_user(self, cls, name)
+    def get_user(self, cls, name):
         """To get a user in the database"""
         return DBStorage.__session.query(cls).filter(name=name).one_or_none()

@@ -10,7 +10,7 @@ class Badge(BaseModel, Base):
     """The badge table"""
     __tablename__ = 'badges'
 
-    name = Column(String(60), nullable=False, unique=True)
+    name = Column(String(60), nullable=False)
 
     # relationship
     users = relationship('User', back_populates='badge')
