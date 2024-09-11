@@ -11,7 +11,7 @@ class User(BaseModel, Base):
     __tablename__ = 'users'
 
     name = Column(String(100), nullable=False)
-    skill_id = Column(String(60), ForeignKey('skills.id'), nullable=False)
+    skill_id = Column(String(60), ForeignKey('skills.id'))
     badge_id = Column(String(60), ForeignKey('badges.id'))
 
     # relationship
@@ -25,6 +25,7 @@ class User(BaseModel, Base):
     progress = relationship(
         'Progress',
         back_populates='user_progress',
-        cascade="all, delete, delete-orphan")
+        cascade="all, delete, delete-orphan",
+        uselist=False)
 
     badge = relationship('Badge', back_populates='users')

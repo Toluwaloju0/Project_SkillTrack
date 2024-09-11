@@ -13,12 +13,10 @@ class DBStorage:
     def __init__(self, user="", pwd="", db=""):
         """The initialisation function"""
 
-        if type(user) is not str or type(pwd) is not str or type(db) is not str:
-            print("User, Password and Database must be strings")
-            return False
         DBStorage.__engine = create_engine(
             f"mysql+mysqldb://{user}:{pwd}@localhost/{db}",
             pool_pre_ping=True)
+        self.classes = []
 
     def reload(self):
         """To get all instances to a database"""
@@ -29,6 +27,7 @@ class DBStorage:
         from models.progress import Progress
         from models.resource import Resource
         from sqlalchemy.orm import scoped_session, sessionmaker
+        self.classes = [User, Badge, Skill, Resource, Progress]
 
         # create and map all tables
         Base.metadata.create_all(DBStorage.__engine)
@@ -51,20 +50,28 @@ class DBStorage:
     def delete(self, obj):
         """To delete an obj in the database"""
         DBStorage.__session.delete(obj)
+        self.save()
 
     def all(self, cls=None):
         """To get all information in the database"""
-        queries = {}
+        cls_dict = {}
         # if class query the class
         if cls:
-            objects = DBStorage.query(cls).all()
+            objects = DBStorage.__session.query(cls).all()
             for obj in objects:
                 key = cls.__name__ + '.' + obj.id
-                queries[key] = obj
+                cls_dict[key] = obj
 
-        # else: query all classes
-        # else
+        else:
+            for cls in self.classes:
+                objects = DBStorage.__session.query(cls).all()
+                for obj in objects:
+                    key = cls.__name__ + '.' + obj.id
+                    cls_dict[key] = obj
+        return cls_dict
 
-    def get_user(self, cls, name):
+    def get_user(self, cls, id=None):
         """To get a user in the database"""
-        return DBStorage.__session.query(cls).filter(name=name).one_or_none()
+        if not id:
+            return None
+        return DBStorage.__session.query(cls).filter(cls.id==id).one_or_none()

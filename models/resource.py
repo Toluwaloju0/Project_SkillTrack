@@ -11,7 +11,7 @@ class Resource(BaseModel, Base):
     __tablename__ = 'resources'
 
     name = Column(String(100), nullable=False)
-    skill_id = Column(String(60), ForeignKey('skills.id'))
+    skill_id = Column(String(60), ForeignKey('skills.id'), nullable=False)
 
     # relationship
     skill = relationship('Skill', back_populates='resources')
