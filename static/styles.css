@@ -81,3 +81,7 @@ header nav a {
   color: #fff;
   text-decoration: none;
 }
+
+.first_img {
+border: 10px solid Black;
+}
