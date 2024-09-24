@@ -1,0 +1,31 @@
+header {
+    background-image: url("../src/assets/welcome_cropped.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: yellow;
+    padding: 1rem;
+    text-align: center;
+    margin-bottom: 3px;
+}
+
+section.dashboard {
+    border-left: dotted green 2px;
+    background-color: beige;
+    height: 50px;
+    padding: 0;
+    padding-left: 3px;
+    h2 {
+        margin: 2px;
+        color: black;
+        width: 80%;
+    }
+    p {
+        margin: 1px;
+        color: rgb(144, 144, 233);
+    }
+}
+
+section.progress {
+    
+}

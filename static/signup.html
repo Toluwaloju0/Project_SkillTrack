@@ -4,15 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up - Skills Track App</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/signup.css">
 </head>
 <body>
     <header>
         <h1>Skills Track App</h1>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="dashboard.html">Dashboard</a>
-            <a href="login.html">Login</a>
-            <a href="signup.html">Sign Up</a>
+    </header>
+    <section>
+        <h3>Sign up here</h3>
+        <form action="dashboard.html" method="post" enctype="application/json" target="_self">
+            <div>
+                <label for="name">Name: </label><input type="text" name="name" required>
+           </div>
+            <div>
+                <label for="email">Email: </label><input type="email" name="email" required>
+            </div>
+            <div>
+                <label for="password">Password: </label><input type="password" name="password" required>
+            </div>
+            <div>
+                <label for="confirm_password">Confirm Password: </label><input type="password" name="confirm_password" required>
+            </div>
+            <fieldset>
+                <legend>Select your Skill: </legend>
+                <div>
+                    <input type="radio" name="skill" id="maths"><label for="maths">Mathematics</label>
+                </div>
+                <div>
+                    <input type="radio" name="skill" id="eng"><label for="eng">English</label>
+                </div>
+            </fieldset>
+            <div>
+                <input type="submit" value="**Create**" >
+            </div>
+        </form>
+    </section>
+    <footer>
+        <p class="italics">© 2024 Skills Track App. All rights reserved.</p>
+        <nav class="left">
+          <a href="#">About Us</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
         </nav>
-    </
+        <section class="contact">
+         <p class="contact">Contact us:</p>
+         <div>
+            <p><span>Email:</span> <a class="italics" href="mailto:tolukayode2017@gmail.com">Toluwaloju Kayode</a></p>
+            <p><span>Phone:</span> +234 702 670 6467</p>
+          </div>
+          <div>
+            <p><span>Email:</span> <a class="italics" href="mailto:easytmashabela@gmail.com">Theo Mashabele</a></p>
+            <p><span>Phone:</span> 27 72 354 7066</p>
+         </div>
+        </section>
+    </footer>
+</body>
+</html>
